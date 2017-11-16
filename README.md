@@ -49,3 +49,12 @@ Assuming a country uses RFID devices for road toll. The way it works is:
 
 ## Implementation
 
+* Sam is the owner of a truck (rfid: SATOSHI).
+
+* Sam wants to use his blockchain wallet address 0x123 for all his payments.
+
+* The regulator registers the 0x12345 to be the rightly owner of vehicle rfid "SATOSHI" in the smart contract.
+
+* Sam tops up his vehicle balance in the contract.
+
+* Sam starts driving 
