@@ -1,62 +1,57 @@
-# Blockchain in Toll Roads
+## Installation
 
-## Introduction
+* Make sure vagrant virtual machine is up and running
 
-Road toll is created to reduce traffic jams. People are less likely to travel on certain roads if they have to pay. There could be complex forumalae to calculate the toll fee such as type of vehicle, day and time of travel, number of passengers...etc. 
+```
+// IN parent host, Install dependencies
+npm install
+```
 
-Road toll Implementation can be quite varied, from human (manual) tolls to fully automated tolls using technology like [RFID](https://en.wikipedia.org/wiki/Radio-frequency_identification)
+### 1. Starting Testrpc
 
-Assuming a country uses RFID devices for road toll. The way it works is:
+```
+// ssh into vm and run testrpc
+vagrant ssh
+// start_testrpc.sh is a wrapper for testrpc
+./DAPPS/scripts/start_testrpc.sh
+```
 
-* All vehicles will have a RFID device installed when the vehicle is first purchased. The RFID ID is linked to a carplate in the regulator's central database.
+### 2. Running Mocha Test
 
-* Driver tops up a cash card and inserts the card into the device when driving.
+* Make sure testrpc is running in step 1.
 
-* When the vehicle passes the toll, the card value is automatically deducted based on some business rules decided by the Toll.
+```
+// in vm
+truffle test
+```
 
-* If the card does not have enough credit when passing the toll, the vehicle owner will be penalised.
+### 3. Deployment
 
+* Make sure testrpc is running in step 1.
 
-## Problem:
+```
+// in vm
+truffle migrate --reset
+```
 
-* Driver is usually not aware of actual toll charges as regulation keeps changing.
+## 4. Running DAPP
 
-* Topping up cash card can be troublesome.
+* Make sure testrpc is running in step 1.
 
-* Cash card can be misplaced or stolen.
+* Make sure contracts are deployed in step 3.
 
-* Driver does not know if toll is charging correctly. Driver has to trust the regulator as there is currently no way for the driver to access his own toll ledger.
+* No metamask required to make life simple.
 
-* Traffic is equally bad most of the time as the toll fee is too low and not responsive to traffic conditions. Regulator could have made the fees higher but it applies to everyone and it gets political.
+```
+// In parent host terminal
+npm run start 
+// website available at http://localhost:3000
+```
 
-## Possible Solution:
+### Project Requirements
 
-* A permissionless blockchain to track all transactions for all vehicles passing through the toll.
+* See [project requirements](REQUIREMENTS.md)
 
-* Driver deposit credit to his own account inside a smart contract. Once the vehicle passes the toll, driver's account is automatically debited inside the contract. It works very much like the cash card but without the card and cannot be stolen.
+### Resources
 
-* The smart contract allows user to check any toll fee at any point in time.
-
-* The fee is responsive to traffic conditions based on the number of vehicles between 2 toll points every minute, ie fees will be higher when there is a traffic jam and lower when traffic is low.
-
-* The smart contract allows user to pre-book a journey early. Driver pay a small fee and lock in the date/time of travel to get better toll rates. This will allow better traffic distribution throughout the day (refer to the diagram below).
-
-* It is possible to integrate the blockchain into a GPS device. This will provide a good UI for driver to calculate the the toll charges for the journey as well. 
-
-* Having a **Smart Toll System** as mentioned above is very computational demanding and expensive using traditional centralised system.
-
-![Smart Toll](images/smart_toll.jpg)
-
-## An Example
-
-* A new truck is manufactured. The regulator registers the truck in the Smart Toll Contract. Let's say the truck is given a unique vehicle address called 0xSATOSHI. This address is embedded into the rfid device of the truck. Together with this address, details of the truck such as manufactured date, type, model...etc is stored in an off-chain system.
-
-* Sam bought the truck and is now the owner of the new truck.
-
-* Sam's sensitive details such as name, date of birth, license number, contact number and address is kept off-chain. The regulator creates a new account address in the blockchain and associates it to the off-chain account. Let's say Sam's unique on-chain account address is 0xSAM.
-
-* In the smart contract, the regulator associates 0xSAM to be the rightful owner of vehicle 0xSATOSHI.
-
-* Sam tops up his account in the blockchain.
-
-* Sam starts driving. When the truck passes through the toll, Sam's account "0xSAM" is auto debited.
+* [Truffle React Box](https://github.com/truffle-box/react-box)

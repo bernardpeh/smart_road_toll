@@ -1,0 +1,57 @@
+.container {
+    padding: 20px;
+}
+.header {
+    background: lightgrey;
+    padding: 5px;
+}
+ul.menu li {
+    padding: 10px;
+    list-style: none;
+    display: inline;
+}
+.content {
+    padding-bottom: 20px;
+    margin-top: -20px;
+}
+.log {
+    margin: 10px;
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+.section {
+    margin-top: 20px;
+    border-top: 1px solid black;
+}
+label {
+    padding: 10px;
+}
+
+.submit-button {
+    margin: 10px;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+.selected {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.accounts {
+    padding: 10px;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
